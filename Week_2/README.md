@@ -15,12 +15,18 @@ Week_2/
 │   └── Steel_industry_data.csv        # Raw energy consumption dataset
 │
 ├── screenshots/                       # High-resolution screenshots of notebook sections & plots
-│   ├── 1_title_section.png
-│   ├── 2_outlier_boxplot.png
-│   ├── 3_correlation_heatmap.png
-│   ├── 4_model_comparison.png
-│   ├── 5_predicted_vs_actual.png
-│   └── 6_feature_importance.png
+│   ├── screenshot_01.png
+│   ├── screenshot_02.png
+│   ├── screenshot_03.png
+│   ├── screenshot_04.png
+│   ├── screenshot_05.png
+│   ├── screenshot_06.png
+│   ├── screenshot_07.png
+│   ├── screenshot_08.png
+│   ├── screenshot_09.png
+│   ├── screenshot_10.png
+│   ├── screenshot_11.png
+│   └── screenshot_12.png
 │
 ├── .gitignore                         # Git exclusion rules
 ├── week2_eda.ipynb                    # Unified Deep EDA, Feature Engineering & Baseline Modeling Notebook (25 Sections, 51 Cells)
