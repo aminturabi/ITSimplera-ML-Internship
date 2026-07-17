@@ -1,5 +1,13 @@
 # Week 3 Internship Task: Dimensionality Reduction & FastAPI Dashboard
 
+## 📝 Student Information
+- **Student Name:** Amin Khan
+- **Registration No:** AIMLB01-8657
+- **Course:** Machine Learning
+- **Assignment:** Week 3 Internship Task
+
+---
+
 This repository contains the implementation of the Week 3 internship tasks for the Machine Learning course. The project is split into two parts: Dimensionality Reduction with PCA and Deployment via a FastAPI Web Dashboard.
 
 ---
@@ -97,10 +105,4 @@ Once running, access the dashboard in your web browser:
 - Dashboard: [http://127.0.0.1:8000/dashboard](http://127.0.0.1:8000/dashboard)
 - Predictor: [http://127.0.0.1:8000/predict](http://127.0.0.1:8000/predict)
 
----
 
-## 📝 Student Information
-- **Student Name:** Amin Khan
-- **Registration No:** AIMLB01-8657
-- **Course:** Machine Learning
-- **Assignment:** Week 3 Internship Task
