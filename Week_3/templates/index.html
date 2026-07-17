@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}Home | Steel Industry Energy Consumption AI{% endblock %}
+
+{% block meta_description %}Welcome to the Steel Industry Energy Consumption predictive platform, leveraging PCA and Random Forest regression for real-time predictions.{% endblock %}
+
+{% block content %}
+<div class="hero">
+    <div class="hero-text">
+        <h1>Predictive Energy Intelligence for <span>Steel Manufacturing</span></h1>
+        <p>A cutting-edge machine learning platform that uses Dimensionality Reduction (PCA) to compress 20 engineering features into 10 principal components, achieving a 50% feature reduction while retaining 99.1% of predictive performance.</p>
+        <div class="cta-buttons">
+            <a href="/predict" class="btn btn-primary" id="cta-predict">Get Predictions</a>
+            <a href="/dashboard" class="btn btn-secondary" id="cta-dashboard">Explore Insights</a>
+        </div>
+    </div>
+    
+    <div class="card" style="display: flex; flex-direction: column; gap: 1.5rem;">
+        <h2 style="color: var(--accent-blue); font-size: 1.5rem; border-bottom: 1px solid var(--glass-border); padding-bottom: 0.5rem;">Project Summary</h2>
+        <div style="display: flex; flex-direction: column; gap: 1rem;">
+            <div>
+                <h3 style="font-size: 1rem; color: #ffffff;">⚡ Active Model</h3>
+                <p style="font-size: 0.9rem; color: var(--text-secondary);">Random Forest Regressor (50 estimators, max depth 15) fit on 10 Principal Components.</p>
+            </div>
+            <div>
+                <h3 style="font-size: 1rem; color: #ffffff;">📉 Dimensionality Reduction</h3>
+                <p style="font-size: 0.9rem; color: var(--text-secondary);">PCA 95% Variance threshold reached at 10 PCs (20 down to 10 features).</p>
+            </div>
+            <div>
+                <h3 style="font-size: 1rem; color: #ffffff;">🎯 Accuracy Retained</h3>
+                <p style="font-size: 0.9rem; color: var(--text-secondary);">Baseline R² of 99.88% optimized to 98.99% R² with 50% memory savings.</p>
+            </div>
+            <div>
+                <h3 style="font-size: 1rem; color: #ffffff;">📊 Core Visualizations</h3>
+                <p style="font-size: 0.9rem; color: var(--text-secondary);">Deep analysis of load levels, diurnal cycles, and engineering factor correlations.</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

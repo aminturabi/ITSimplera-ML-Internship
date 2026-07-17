@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{% block meta_description %}Steel Industry Energy Consumption Dashboard and Real-time Predictor using PCA and RandomForestRegressor.{% endblock %}">
+    <title>{% block title %}Steel Industry Energy Consumption AI{% endblock %}</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <a href="/" class="logo" id="nav-logo">
+                <div class="logo-icon"></div>
+                <span>SteelEnergy.AI</span>
+            </a>
+            <nav>
+                <ul id="nav-list">
+                    <li><a href="/" id="nav-home" class="{% if active_page == 'home' %}active{% endif %}">Home</a></li>
+                    <li><a href="/dashboard" id="nav-dashboard" class="{% if active_page == 'dashboard' %}active{% endif %}">Dashboard</a></li>
+                    <li><a href="/predict" id="nav-predict" class="{% if active_page == 'predict' %}active{% endif %}">Real-time Predictor</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; 2026 SteelEnergy.AI | Developed by <span>Amin Khan</span> (AIMLB01-8657) | Machine Learning Assignment</p>
+    </footer>
+</body>
+</html>

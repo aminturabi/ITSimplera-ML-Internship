@@ -1,0 +1,134 @@
+{% extends "base.html" %}
+
+{% block title %}Real-time Predictor | Steel Industry Energy Consumption AI{% endblock %}
+
+{% block meta_description %}Predict steel industry energy consumption in real-time by entering active electrical parameters, temporal settings, and factory load types.{% endblock %}
+
+{% block content %}
+<div style="margin-bottom: 2rem;">
+    <h1 style="font-size: 2.2rem; font-weight: 700; margin-bottom: 0.5rem;">Real-time Energy Predictor</h1>
+    <p style="color: var(--text-secondary); max-width: 800px;">Input the plant's operational parameters below. The backend will process and project these features into PCA space using the trained pipeline to predict energy consumption (Usage_kWh) in real-time.</p>
+</div>
+
+<div class="predict-layout">
+    <!-- Form Card -->
+    <div class="card">
+        <h2 class="form-title">Operational Parameters</h2>
+        <form action="/predict" method="POST" id="prediction-form">
+            <div class="form-grid">
+                <!-- Continuous Features -->
+                <div class="form-group">
+                    <label for="lagging_reactive">Lagging Current Reactive Power (kVarh)</label>
+                    <input type="number" step="0.01" name="lagging_reactive" id="lagging_reactive" value="{{ form_values.lagging_reactive|default(10.5) }}" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="leading_reactive">Leading Current Reactive Power (kVarh)</label>
+                    <input type="number" step="0.01" name="leading_reactive" id="leading_reactive" value="{{ form_values.leading_reactive|default(0.15) }}" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="co2">CO2 Emissions (tCO2)</label>
+                    <input type="number" step="0.001" name="co2" id="co2" value="{{ form_values.co2|default(0.01) }}" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="lagging_pf">Lagging Current Power Factor (%)</label>
+                    <input type="number" step="0.01" name="lagging_pf" id="lagging_pf" value="{{ form_values.lagging_pf|default(80.5) }}" min="0" max="100" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="leading_pf">Leading Current Power Factor (%)</label>
+                    <input type="number" step="0.01" name="leading_pf" id="leading_pf" value="{{ form_values.leading_pf|default(99.9) }}" min="0" max="100" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="nsm">NSM (Seconds from Midnight)</label>
+                    <input type="number" name="nsm" id="nsm" value="{{ form_values.nsm|default(32400) }}" min="0" max="86400" required>
+                </div>
+                
+                <!-- Temporal Features -->
+                <div class="form-group">
+                    <label for="hour">Hour of Day (0-23)</label>
+                    <input type="number" name="hour" id="hour" value="{{ form_values.hour|default(9) }}" min="0" max="23" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="month">Month (1-12)</label>
+                    <input type="number" name="month" id="month" value="{{ form_values.month|default(7) }}" min="1" max="12" required>
+                </div>
+                
+                <!-- Categorical Features -->
+                <div class="form-group">
+                    <label for="day_of_week">Day of Week</label>
+                    <select name="day_of_week" id="day_of_week" required>
+                        <option value="Monday" {% if form_values.day_of_week == 'Monday' %}selected{% endif %}>Monday</option>
+                        <option value="Tuesday" {% if form_values.day_of_week == 'Tuesday' or not form_values %}selected{% endif %}>Tuesday</option>
+                        <option value="Wednesday" {% if form_values.day_of_week == 'Wednesday' %}selected{% endif %}>Wednesday</option>
+                        <option value="Thursday" {% if form_values.day_of_week == 'Thursday' %}selected{% endif %}>Thursday</option>
+                        <option value="Friday" {% if form_values.day_of_week == 'Friday' %}selected{% endif %}>Friday</option>
+                        <option value="Saturday" {% if form_values.day_of_week == 'Saturday' %}selected{% endif %}>Saturday</option>
+                        <option value="Sunday" {% if form_values.day_of_week == 'Sunday' %}selected{% endif %}>Sunday</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="week_status">Week Status</label>
+                    <select name="week_status" id="week_status" required>
+                        <option value="Weekday" {% if form_values.week_status == 'Weekday' or not form_values %}selected{% endif %}>Weekday</option>
+                        <option value="Weekend" {% if form_values.week_status == 'Weekend' %}selected{% endif %}>Weekend</option>
+                    </select>
+                </div>
+                
+                <div class="form-group form-group-full">
+                    <label for="load_type">Load Type</label>
+                    <select name="load_type" id="load_type" required>
+                        <option value="Light_Load" {% if form_values.load_type == 'Light_Load' %}selected{% endif %}>Light Load</option>
+                        <option value="Medium_Load" {% if form_values.load_type == 'Medium_Load' or not form_values %}selected{% endif %}>Medium Load</option>
+                        <option value="Maximum_Load" {% if form_values.load_type == 'Maximum_Load' %}selected{% endif %}>Maximum Load</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div style="margin-top: 2rem;">
+                <button type="submit" class="btn btn-primary" style="width: 100%; border: none;" id="btn-predict-submit">Generate Energy Prediction</button>
+            </div>
+        </form>
+    </div>
+    
+    <!-- Result Card -->
+    <div class="card result-card" id="prediction-result-card">
+        {% if prediction is not none %}
+            <h2 style="color: #ffffff; font-size: 1.4rem;">Predicted Active Energy</h2>
+            <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 0.2rem;">Model: PCA + Random Forest Pipeline</p>
+            
+            <div class="result-glow">
+                <div class="result-value" id="prediction-val">{{ "%.2f"|format(prediction) }}</div>
+                <div class="result-unit">kWh</div>
+            </div>
+            
+            <div style="margin-top: 1rem; width: 100%; text-align: left; border-top: 1px solid var(--glass-border); padding-top: 1rem;">
+                <h3 style="font-size: 0.95rem; color: var(--accent-blue); margin-bottom: 0.5rem;">Calculated Factors:</h3>
+                <div style="display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.3rem;">
+                    <span>Power Factor Ratio:</span>
+                    <span style="color: #ffffff; font-weight: 500;">{{ "%.4f"|format(calculated_pf_ratio) }}</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.3rem;">
+                    <span>Is Weekend:</span>
+                    <span style="color: #ffffff; font-weight: 500;">{{ "Yes" if is_weekend else "No" }}</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--text-secondary);">
+                    <span>Day of Week Index:</span>
+                    <span style="color: #ffffff; font-weight: 500;">{{ day_of_week_idx }} (0=Mon, 6=Sun)</span>
+                </div>
+            </div>
+        {% else %}
+            <div class="result-placeholder">
+                <div class="result-placeholder-icon">⚡</div>
+                <h3 style="font-size: 1.2rem; color: #ffffff;">Awaiting Input Parameters</h3>
+                <p style="font-size: 0.9rem; color: var(--text-secondary); max-width: 250px; margin: 0 auto;">Fill in the operational form on the left and click "Generate Energy Prediction".</p>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

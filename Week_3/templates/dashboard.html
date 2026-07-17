@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard | Steel Industry Energy Consumption AI{% endblock %}
+
+{% block meta_description %}Explore the steel industry energy consumption patterns, featuring interactive plots of load types, hourly trends, and feature correlations.{% endblock %}
+
+{% block content %}
+<div style="margin-bottom: 2rem;">
+    <h1 style="font-size: 2.2rem; font-weight: 700; margin-bottom: 0.5rem;">Energy Analytics Dashboard</h1>
+    <p style="color: var(--text-secondary); max-width: 800px;">Key exploratory data insights extracted from the steel industry dataset. These insights reveal major electrical patterns, loading structures, and feature correlations that guide our predictive model.</p>
+</div>
+
+<div class="dashboard-grid">
+    <!-- Plot 1 -->
+    <div class="card plot-card">
+        <h2>1. Energy Consumption by Hour of Day</h2>
+        <p style="color: var(--text-secondary); font-size: 0.95rem;">Line chart mapping the average energy consumption (kWh) over a 24-hour diurnal cycle. Notice the sharp increases in demand beginning around 08:00 and peaking during afternoon operational shifts before tapering off after 18:00.</p>
+        <div class="plot-image-container">
+            <img src="/static/images/energy_by_hour.png" alt="Average Energy Consumption by Hour of Day" id="img-energy-by-hour">
+        </div>
+    </div>
+    
+    <!-- Plot 2 -->
+    <div class="card plot-card">
+        <h2>2. Energy Consumption by Industry Load Type</h2>
+        <p style="color: var(--text-secondary); font-size: 0.95rem;">Bar chart analyzing active energy consumption across the three designated system load levels (Light, Medium, Maximum). Average power usage transitions from a minor 2.92 kWh during Light Load phases up to a substantial 74.19 kWh during peak Maximum Load periods.</p>
+        <div class="plot-image-container">
+            <img src="/static/images/energy_by_load_type.png" alt="Average Energy Consumption by Load Type" id="img-energy-by-load-type">
+        </div>
+    </div>
+    
+    <!-- Plot 3 -->
+    <div class="card plot-card">
+        <h2>3. Feature Correlation Matrix</h2>
+        <p style="color: var(--text-secondary); font-size: 0.95rem;">Correlation heatmap showing standard Pearson correlations between numerical electrical inputs. Note the strong positive correlation between active energy (Usage_kWh) and Reactive Power, CO2 levels, and lagging power factor parameters.</p>
+        <div class="plot-image-container">
+            <img src="/static/images/correlation_heatmap.png" alt="Correlation Heatmap of Numerical Features" id="img-correlation-heatmap">
+        </div>
+    </div>
+</div>
+{% endblock %}
