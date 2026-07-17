@@ -27,3 +27,8 @@ Thumbs.db
 # Generator helper scripts
 Week_3/generate_eda_plots.py
 Week_3/generate_notebook.py
+
+# Output files of the code
+Week_3/model.joblib
+Week_3/notebooks/*.png
+Week_3/static/images/*.png
