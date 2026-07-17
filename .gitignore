@@ -23,3 +23,7 @@ Thumbs.db
 *.swp
 .agents/
 .gemini/
+
+# Generator helper scripts
+Week_3/generate_eda_plots.py
+Week_3/generate_notebook.py
