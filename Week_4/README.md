@@ -154,27 +154,3 @@ python generate_notebook.py
 # Alternatively, launch Jupyter Lab / Notebook
 jupyter notebook notebooks/week4_clustering.ipynb
 ```
-
----
-
-## 💬 LinkedIn Post Submission Draft
-
-> 🚀 **Unlocking Customer Insights in Banking with Unsupervised Learning & K-Means Clustering!**
->
-> Customer segmentation is one of the most powerful real-world applications of machine learning in banking and finance. This week in my Machine Learning Internship, I explored **Unsupervised Learning** on behavioral credit card data of ~9,000 active cardholders over 6 months!
->
-> 🔹 **Key Highlights & Technical Workflow**:
-> • **Data Preprocessing**: Handled missing financial records with median imputation to protect against skewness, and standardized features with `StandardScaler`.
-> • **Optimal Cluster Selection**: Used the **Elbow Method** (WCSS) and **Silhouette Scores** across $k=2 \dots 10$ to establish $k=4$ as the optimal cluster count.
-> • **Customer Profiling & Heatmaps**: Generated cluster mean heatmaps to identify 4 actionable customer personas:
->   1️⃣ **VIP High Spenders (4.6%)**: High purchase volume (\$7.6k+ avg), high payments — targeted for luxury rewards.
->   2️⃣ **Installment Shoppers (37.6%)**: Frequent retail shoppers utilizing monthly payment plans.
->   3️⃣ **Cash Advance Borrowers (13.4%)**: High cash withdrawal reliance — targeted for risk management & balance transfer programs.
->   4️⃣ **Low-Activity Cardholders (44.4%)**: Conservative card users — targeted for engagement campaigns.
-> • **Algorithm Evaluation**: Compared K-Means with **Agglomerative Hierarchical Clustering** (SciPy Dendrogram & Scikit-Learn Crosstabulation).
->
-> 💡 **Key Takeaway**: While Hierarchical Clustering provides rich visual dendrogram taxonomies, **K-Means is the gold standard for production banking pipelines** due to its $O(N \cdot k)$ linear scalability and real-time customer scoring capabilities!
->
-> 🔗 Check out the full repository and executed notebook on GitHub!
->
-> #MachineLearning #DataScience #UnsupervisedLearning #KMeans #CustomerSegmentation #BankingAnalytics #Python #AI #Internship
