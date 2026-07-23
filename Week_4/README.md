@@ -15,7 +15,6 @@
 | **Internship Program** | Machine Learning Internship |
 | **Module / Week** | **Week 4 — Unsupervised Learning & Customer Segmentation** |
 | **Dataset** | Credit Card Dataset for Clustering (8,950 records x 18 features) |
-| **Submission Status** | Completed & Verified |
 
 ---
 
