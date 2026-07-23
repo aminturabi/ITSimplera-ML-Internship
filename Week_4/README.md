@@ -23,8 +23,7 @@ Week_4/
 ├── notebooks/
 │   └── week4_clustering.ipynb      # Fully executed Jupyter Notebook with all outputs & plots
 ├── README.md                       # Comprehensive project documentation & submission report
-├── requirements.txt                # Python environment dependency requirements
-└── generate_notebook.py            # Reproducible build script for notebook generation
+└── requirements.txt                # Python environment dependency requirements
 ```
 
 ---
@@ -148,9 +147,6 @@ cd Week_4
 # 2. Install dependencies
 pip install -r requirements.txt
 
-# 3. Generate and run executed notebook automatically
-python generate_notebook.py
-
-# Alternatively, launch Jupyter Lab / Notebook
+# 3. Launch Jupyter Lab / Notebook
 jupyter notebook notebooks/week4_clustering.ipynb
 ```
