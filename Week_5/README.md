@@ -177,17 +177,4 @@ Open your browser at `http://localhost:8501`.
 
 ---
 
-## ✅ Deliverables Checklist
 
-- [x] **`notebooks/week5_nlp.ipynb`**: Fully executed Jupyter notebook with visible cell outputs.
-- [x] **`app.py`**: Interactive 3-page Streamlit web dashboard.
-- [x] **`models/`**: Saved model (`best_sentiment_model.pkl`) and TF-IDF vectorizer (`tfidf_vectorizer.pkl`).
-- [x] **`data/`**: Folder containing dataset CSVs, preprocessed data, and generated Word Cloud graphics.
-- [x] **`utils/nlp_cleaner.py`**: Shared modular text cleaning utility.
-- [x] **`requirements.txt` & `README.md`**: Complete dependencies list and comprehensive documentation.
-
----
-
-<div align="center">
-  <sub>Built with ❤️ by Amin Turabi | Machine Learning Internship</sub>
-</div>
