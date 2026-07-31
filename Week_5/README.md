@@ -72,8 +72,6 @@ Week_5/
 ├── utils/
 │   └── nlp_cleaner.py                 # Shared modular text cleaning & lemmatization utility
 ├── app.py                             # Interactive 3-Page Streamlit Web Application
-├── train_and_export.py                # Pipeline script for model training & export
-├── run_notebook_execution.py          # Notebook execution runner script
 ├── requirements.txt                   # Project Python package dependencies
 └── README.md                          # Project documentation
 ```
@@ -164,12 +162,7 @@ cd Week_5
 pip install -r requirements.txt
 ```
 
-### 2. Train Models & Generate Artifacts (Optional)
-```bash
-python train_and_export.py
-```
-
-### 3. Launch Streamlit Web App
+### 2. Launch Streamlit Web App
 ```bash
 streamlit run app.py
 ```
